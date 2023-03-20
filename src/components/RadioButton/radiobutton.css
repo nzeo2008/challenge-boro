@@ -1,0 +1,22 @@
+.form-radio {
+	display: flex;
+	font-size: 1.05rem;
+	margin: 0.5rem 0rem;
+	column-gap: 0.5rem;
+	align-items: center;
+	cursor: pointer;
+	transition: 0.15s all ease-in-out;
+}
+
+.form-radio > label,
+input {
+	cursor: pointer;
+}
+
+.form-radio:hover {
+	color: var(--primary-color);
+}
+
+.form-radio:hover .form-radio > input {
+	transform: scale(1.5);
+}
