@@ -1,0 +1,145 @@
+.sorting-menu--wrapper {
+	position: fixed;
+	display: flex;
+	bottom: 50%;
+	z-index: 2;
+	background-color: var(--pure-white-color);
+	padding: 0.7rem 0.4rem 0.7rem 0.7rem;
+	column-gap: 0.8rem;
+	box-shadow: rgba(0, 0, 0, 0.15) 0.15rem 0.15rem 0.15rem;
+	border-radius: 0.7rem;
+	visibility: visible;
+	opacity: 1;
+	transition: 0.25s all ease-in-out;
+}
+
+.sorting-menu--wrapper-hidden {
+	position: fixed;
+	display: flex;
+	bottom: 50%;
+	z-index: 2;
+	background-color: var(--pure-white-color);
+	padding: 0.7rem 0.4rem 0.7rem 0.7rem;
+	column-gap: 0.8rem;
+	box-shadow: rgba(0, 0, 0, 0.15) 0.15rem 0.15rem 0.15rem;
+	border-radius: 0.7rem;
+	opacity: 0;
+	transform: translateX(-5rem);
+	visibility: hidden;
+}
+
+.aside-menu-button {
+	width: 4rem;
+	height: 4rem;
+	background-color: var(--pure-white-color);
+	position: fixed;
+	bottom: 50%;
+	border-top-right-radius: 50%;
+	border-bottom-right-radius: 50%;
+	cursor: pointer;
+	z-index: 2;
+	padding: 0.2rem;
+	box-shadow: rgba(0, 0, 0, 0.15) 0.15rem 0.15rem 0.15rem;
+	transition: 0.3s all ease-in-out;
+	visibility: visible;
+	opacity: 1;
+}
+
+.aside-menu-button-hidden {
+	width: 4rem;
+	height: 4rem;
+	background-color: var(--pure-white-color);
+	position: fixed;
+	bottom: 50%;
+	border-top-right-radius: 50%;
+	border-bottom-right-radius: 50%;
+	cursor: pointer;
+	z-index: 2;
+	padding: 0.2rem;
+	box-shadow: rgba(0, 0, 0, 0.15) 0.15rem 0.15rem 0.15rem;
+	transition: 0.15s all ease-in-out;
+	transform: translateX(-5rem);
+	visibility: hidden;
+	opacity: 0;
+}
+
+.aside-menu-button-picture {
+	height: 100%;
+	border: 0.2rem solid var(--primary-color);
+	border-radius: 100%;
+	transition: 0.3s all ease-in-out;
+}
+
+.aside-menu-button::after {
+	content: 'Открыть меню';
+	background-color: var(--pure-white-color);
+	padding: 1rem;
+	position: absolute;
+	text-align: center;
+	border-radius: 1rem;
+	bottom: 4rem;
+	left: 4rem;
+	visibility: hidden;
+	opacity: 0;
+	pointer-events: none;
+	z-index: 2;
+	transition: 0.2s all ease-in-out;
+	box-shadow: rgba(0, 0, 0, 0.15) 0.15rem 0.15rem 0.15rem;
+	font-size: 1.2rem;
+}
+
+.aside-menu-button:hover::after {
+	visibility: visible;
+	opacity: 1;
+}
+
+.aside-menu-button:hover .aside-menu-button-picture {
+	border-color: var(--accent-color);
+}
+
+.aside-menu-button:hover {
+	padding: 0.7rem;
+}
+
+.sorting-menu-wrapper-closing {
+	margin: auto 0rem;
+	width: 0.6rem;
+	height: 8rem;
+	background-color: var(--primary-color);
+	cursor: pointer;
+	transition: 0.3s all ease-in-out;
+	border-radius: 10rem;
+}
+
+.sorting-menu-wrapper-closing::after {
+	content: 'Закрыть меню';
+	background-color: var(--pure-white-color);
+	padding: 1rem;
+	position: absolute;
+	text-align: center;
+	border-radius: 1rem;
+	bottom: 12rem;
+	left: 14rem;
+	visibility: hidden;
+	opacity: 0;
+	pointer-events: none;
+	z-index: 2;
+	transition: 0.2s all ease-in-out;
+	box-shadow: rgba(0, 0, 0, 0.15) 0.15rem 0.15rem 0.15rem;
+	font-size: 1.2rem;
+}
+
+.sorting-menu-wrapper-closing:hover {
+	background-color: var(--accent-color);
+}
+
+.sorting-menu-wrapper-closing:hover::after {
+	visibility: visible;
+	opacity: 1;
+}
+
+.button-flex-container {
+	display: flex;
+	align-items: center;
+	column-gap: 0.5rem;
+}
