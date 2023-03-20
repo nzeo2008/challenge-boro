@@ -1,0 +1,92 @@
+.tree-view-wrapper {
+	display: flex;
+	flex-direction: column;
+	padding: 4rem 5rem;
+	min-height: 80vh;
+}
+
+.tree-view-wrapper > div {
+	position: relative;
+}
+
+.tree-view-list-wrapper ul {
+	margin: 0.3rem 0rem 0.3rem 8rem;
+}
+
+.tree-view-list-wrapper {
+	display: block;
+}
+
+.tree-view-list-wrapper-hidden {
+	display: none;
+}
+
+.tree-view-wrapper button {
+	padding: 0.2rem;
+	background-color: var(--accent-color);
+	color: var(--pure-white-color);
+	border: none;
+	min-width: 2rem;
+	min-height: 2rem;
+	margin-right: 1rem;
+	cursor: pointer;
+	position: relative;
+}
+
+.tree-view-list-wrapper button::after {
+	content: 'Раскрыть / Закрыть';
+	padding: 0.8rem;
+	z-index: 2;
+	width: max-content;
+	border-radius: 1rem;
+	position: absolute;
+	background-color: var(--pure-white-color);
+	color: black;
+	pointer-events: none;
+	top: -3.5rem;
+	left: 5rem;
+	opacity: 0;
+	visibility: hidden;
+	transition: 0.2s all ease-in-out;
+	box-shadow: rgba(0, 0, 0, 0.15) 0.15rem 0.15rem 0.15rem;
+}
+
+.tree-view-list-wrapper button:hover::after {
+	opacity: 1;
+	visibility: visible;
+}
+
+.tree-view-wrapper > div > button::after {
+	content: 'Раскрыть / Закрыть';
+	padding: 0.8rem;
+	z-index: 2;
+	width: max-content;
+	border-radius: 1rem;
+	position: absolute;
+	background-color: var(--pure-white-color);
+	color: black;
+	pointer-events: none;
+	top: -3.5rem;
+	left: 2rem;
+	opacity: 0;
+	visibility: hidden;
+	transition: 0.2s all ease-in-out;
+	box-shadow: rgba(0, 0, 0, 0.15) 0.15rem 0.15rem 0.15rem;
+}
+
+.tree-view-wrapper > div > button:hover::after {
+	visibility: visible;
+	opacity: 1;
+}
+
+@media screen and (max-width: 500px) {
+	.tree-view-wrapper {
+		padding: 2rem 0.5rem;
+		font-size: 0.8rem;
+	}
+
+	.tree-view-list-wrapper ul {
+		margin: 0.2rem 0rem;
+		padding-left: 6.5rem;
+	}
+}
