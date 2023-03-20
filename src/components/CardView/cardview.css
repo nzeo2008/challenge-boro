@@ -1,0 +1,14 @@
+.main-page-cards-wrapper {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	padding: 5rem 1rem;
+	min-height: 80vh;
+}
+
+@media screen and (max-width: 600px) {
+	.main-page-cards-wrapper {
+		padding: 5rem 0rem;
+	}
+}
