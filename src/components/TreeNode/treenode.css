@@ -3,6 +3,7 @@
 	background-color: aliceblue;
 	padding: 2rem 2rem;
 	margin-left: 4rem;
+	margin-top: 0.5rem;
 	box-shadow: rgba(0, 0, 0, 0.15) 0.15rem 0.15rem 0.15rem;
 	font-size: 1.1rem;
 	letter-spacing: 0.1rem;
@@ -58,7 +59,7 @@
 	transform: scale(1.5);
 }
 
-@media screen and (max-width: 550px) {
+@media screen and (max-width: 600px) {
 	.tree-node {
 		display: block;
 		font-size: 0.8rem;

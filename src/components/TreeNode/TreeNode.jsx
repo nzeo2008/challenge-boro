@@ -4,7 +4,7 @@ import { getDateFromTimestamp } from '../../services/common.service';
 import Modal from '../Modal/Modal';
 import './treenode.css';
 
-function TreeNode({ node, index }) {
+function TreeNode({ node }) {
 	const [showNode, setShowNode] = useState(false);
 	const [showModal, setShowModal] = useState(false);
 
@@ -25,7 +25,7 @@ function TreeNode({ node, index }) {
 			>
 				{showNode ? '-' : '+'}
 			</button>
-			<span>{index + 1}: </span>
+			<span className="node-name">{node.name}: </span>
 			<li className={showNode ? 'tree-node' : 'tree-node-hidden'}>
 				<div>
 					<div className="tree-node-img-section">
