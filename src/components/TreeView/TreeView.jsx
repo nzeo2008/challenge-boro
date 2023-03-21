@@ -7,7 +7,7 @@ import './treeview.css';
 function TreeView() {
 	const [showTree, setShowTree] = useState(false);
 	// Лимит для загрузки данных
-	const [lastIndex, setLastIndex] = useState(10);
+	const [lastIndex, setLastIndex] = useState(20);
 	const { data, isDataLoading } = useContext(DataContext);
 	// Ссылка на данные для IntersectionObserver
 	const dataRef = useRef('');
@@ -33,7 +33,6 @@ function TreeView() {
 		if (dataRef.current) {
 			observer.observe(dataRef.current);
 		}
-
 		// Отписываемя от observer при размонтировании элемента
 		return () => {
 			observer.disconnect();

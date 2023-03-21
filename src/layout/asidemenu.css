@@ -1,4 +1,4 @@
-.sorting-menu--wrapper {
+.sorting-menu-wrapper {
 	position: fixed;
 	display: flex;
 	bottom: 50%;
@@ -13,7 +13,7 @@
 	transition: 0.25s all ease-in-out;
 }
 
-.sorting-menu--wrapper-hidden {
+.sorting-menu-wrapper-hidden {
 	position: fixed;
 	display: flex;
 	bottom: 50%;

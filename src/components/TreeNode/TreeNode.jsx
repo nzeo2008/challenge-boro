@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { API_ENDPOINTS } from '../../constants/urlConstants';
 import { getDateFromTimestamp } from '../../services/common.service';
 import Modal from '../Modal/Modal';
@@ -9,7 +9,7 @@ function TreeNode({ node, index }) {
 	const [showModal, setShowModal] = useState(false);
 
 	const handleImageClick = () => {
-		setShowModal((prevState) => !prevState);
+		setShowModal(true);
 	};
 
 	const handleCloseModal = () => {

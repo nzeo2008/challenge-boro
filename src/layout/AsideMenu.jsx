@@ -5,7 +5,7 @@ import { DataContext } from '../App';
 import { sortData } from '../services/common.service';
 import { getDataFromLocalStorage } from '../services/tokenStorage.service';
 import { TOKEN_STORAGE } from '../constants/tokenConstants';
-import './aside.css';
+import './asidemenu.css';
 
 function AsideMenu() {
 	const { setData, setShowMenu, showMenu } = useContext(DataContext);
@@ -27,8 +27,8 @@ function AsideMenu() {
 			<div
 				className={
 					showMenu
-						? 'sorting-menu--wrapper'
-						: 'sorting-menu--wrapper-hidden'
+						? 'sorting-menu-wrapper'
+						: 'sorting-menu-wrapper-hidden'
 				}
 			>
 				<List label="Сортировать по:">
