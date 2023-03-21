@@ -88,6 +88,13 @@
 	}
 }
 
+@media screen and (max-width: 1800px) {
+	.card-wrapper {
+		max-width: 27rem;
+		max-height: 18rem;
+	}
+}
+
 @media screen and (max-width: 600px) {
 	.card-wrapper {
 		min-width: 100%;

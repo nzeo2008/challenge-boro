@@ -32,6 +32,17 @@
 	pointer-events: none;
 }
 
+@media screen and (max-width: 1800px) {
+	.footer-wrapper-button {
+		font-size: 1.2rem;
+		padding: 0.6rem;
+	}
+
+	.footer-wrapper {
+		min-height: 8vh;
+	}
+}
+
 @media screen and (max-width: 600px) {
 	.footer-wrapper-button {
 		font-size: 1rem;
