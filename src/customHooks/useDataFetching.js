@@ -1,7 +1,11 @@
-import { useState, useEffect } from 'react';
-import { extractImageName } from '../services/common.service';
+import { useState, useEffect, useRef } from 'react';
 import {
-	saveDataToLocalStorage,
+	extractImageName,
+	separateDataByCategory,
+} from '../services/common.service';
+import { TOKEN_STORAGE } from '../constants/tokenConstants';
+import {
+	removeDataFromLocalStorage,
 	getDataFromLocalStorage,
 } from '../services/tokenStorage.service';
 
@@ -11,6 +15,7 @@ const useDataFetching = (url, storageKey) => {
 	const [data, setData] = useState([]);
 	const [isDataLoading, setIsDataLoading] = useState(true);
 	const [error, setError] = useState(null);
+	const treeViewDataRef = useRef([]);
 
 	// Загрузка данных из сети и сохранение их в локальном хранилище
 	const fetchData = async () => {
@@ -20,10 +25,18 @@ const useDataFetching = (url, storageKey) => {
 
 			// Добавление поля с именем файла к каждому объекту в массиве данных
 			const fetchedDataWithNames = extractImageName(fetchedData);
-			setData(fetchedDataWithNames);
-
-			// Сохранение в локальное хранилище
-			saveDataToLocalStorage(storageKey, fetchedDataWithNames);
+			treeViewDataRef.current =
+				separateDataByCategory(fetchedDataWithNames);
+			const savedLocalData = getDataFromLocalStorage(storageKey);
+			if (!savedLocalData) {
+				setData(fetchedDataWithNames);
+			}
+			const filteredData = filterData(
+				fetchedDataWithNames,
+				savedLocalData
+			);
+			setData(filteredData);
+			setIsDataLoading(false);
 		} catch (error) {
 			setError(error);
 		} finally {
@@ -34,21 +47,24 @@ const useDataFetching = (url, storageKey) => {
 	// Функция для повторной загрузки данных
 	const resetData = () => {
 		setIsDataLoading(true);
+		removeDataFromLocalStorage(TOKEN_STORAGE.USER_DATA);
 		fetchData();
+	};
+
+	const filterData = (data, deletedLocalData) => {
+		const filteredArray = data.filter((obj) =>
+			deletedLocalData.every((element) => element.image !== obj.image)
+		);
+
+		return filteredArray;
 	};
 
 	// Получение данных из localStorage, если они есть, если нет, то вызываем fetchData
 	useEffect(() => {
-		const savedLocalData = getDataFromLocalStorage(storageKey);
-		if (savedLocalData) {
-			setData(savedLocalData);
-			setIsDataLoading(false);
-		} else {
-			fetchData();
-		}
-	}, [url, storageKey]);
+		fetchData();
+	}, [url]);
 
-	return { data, isDataLoading, error, setData, resetData };
+	return { data, isDataLoading, error, treeViewDataRef, setData, resetData };
 };
 
 export default useDataFetching;
