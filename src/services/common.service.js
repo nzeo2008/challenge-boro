@@ -68,16 +68,19 @@ export function extractImageName(data) {
 	return data;
 }
 
+// Функция для формирования диапазон значений
 export function range(start, end) {
 	return Array(end - start + 1)
 		.fill()
 		.map((_, idx) => start + idx);
 }
 
+// Функция для перевода из байт в килобайт
 export function getSize(filesize) {
 	return (parseInt(filesize) / 1000).toFixed(2) + ' kB';
 }
 
+// Функция разбивки входных данных по категориям
 export function separateDataByCategory(data) {
 	const updatedData = [];
 	let categoryObject = {};

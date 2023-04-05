@@ -17,7 +17,7 @@ const useDataFetching = (url, storageKey) => {
 	const [error, setError] = useState(null);
 	const treeViewDataRef = useRef([]);
 
-	// Загрузка данных из сети и сохранение их в локальном хранилище
+	// Загрузка данных из сети
 	const fetchData = async () => {
 		try {
 			const response = await fetch(url);
@@ -25,12 +25,17 @@ const useDataFetching = (url, storageKey) => {
 
 			// Добавление поля с именем файла к каждому объекту в массиве данных
 			const fetchedDataWithNames = extractImageName(fetchedData);
+			// Создание копии данных для TreeView
 			treeViewDataRef.current =
 				separateDataByCategory(fetchedDataWithNames);
+
+			// Фильтрация удалённых карточек из массива входных данных
 			const savedLocalData = getDataFromLocalStorage(storageKey);
+
 			if (!savedLocalData) {
 				setData(fetchedDataWithNames);
 			}
+
 			const filteredData = filterData(
 				fetchedDataWithNames,
 				savedLocalData
@@ -51,6 +56,7 @@ const useDataFetching = (url, storageKey) => {
 		fetchData();
 	};
 
+	// Функция фильтрации массивов
 	const filterData = (data, deletedLocalData) => {
 		const filteredArray = data.filter((obj) =>
 			deletedLocalData.every((element) => element.image !== obj.image)
@@ -59,7 +65,6 @@ const useDataFetching = (url, storageKey) => {
 		return filteredArray;
 	};
 
-	// Получение данных из localStorage, если они есть, если нет, то вызываем fetchData
 	useEffect(() => {
 		fetchData();
 	}, [url]);

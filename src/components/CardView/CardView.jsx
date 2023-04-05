@@ -108,15 +108,20 @@ function CardView() {
 	}
 
 	useEffect(() => {
+		// Проверка при удалении элементов со страницы
 		if (currentPage - 1 === data.length / limitOfPages) {
 			setCurrentPage(Math.ceil(data.length / limitOfPages));
 		}
 
+		// Проверка на выход за пределы из диапазона значений
+		// Проверка при проводе вперёд
 		if (currentPage === pagesIndex.end && currentPage !== numberOfPages) {
 			setPagesIndex({
 				start: currentPage - 2,
 				end: currentPage - 2 + pagesLimit,
 			});
+
+			// Проверка при проводе назад
 		} else if (
 			currentPage - 1 === pagesIndex.start &&
 			currentPage - pagesLimit >= 0
@@ -127,6 +132,8 @@ function CardView() {
 			});
 		}
 
+		// Если значение текущей страницы меньше,
+		// чем установленный лимит, то сбрасываем индекс
 		if (currentPage - pagesLimit < 0) {
 			setPagesIndex({
 				start: 0,

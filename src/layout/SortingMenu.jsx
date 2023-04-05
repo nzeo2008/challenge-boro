@@ -9,6 +9,7 @@ function SortingMenu() {
 	const { setData, data, sorting, setSorting, setIndex } =
 		useContext(DataContext);
 
+	// Функция сортировки при нажатии
 	const handleSort = (key) => {
 		const sortedData = sortData(data, key, sorting);
 		sorting === 'DESC' ? setSorting('ASC') : setSorting('DESC');
