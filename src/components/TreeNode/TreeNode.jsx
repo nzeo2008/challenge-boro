@@ -1,23 +1,47 @@
-import React, { useState } from 'react';
-import { API_ENDPOINTS } from '../../constants/urlConstants';
-import { getDateFromTimestamp } from '../../services/common.service';
-import Modal from '../Modal/Modal';
+import { useState, useCallback, useRef, useEffect } from 'react';
+
+import NodeCard from '../NodeCard/NodeCard';
 import './treenode.css';
 
-function TreeNode({ node }) {
+function TreeNode({ name, value }) {
 	const [showNode, setShowNode] = useState(false);
-	const [showModal, setShowModal] = useState(false);
 
-	const handleImageClick = () => {
-		setShowModal(true);
-	};
+	// Лимит для загрузки данных
+	const [lastIndex, setLastIndex] = useState(20);
 
-	const handleCloseModal = () => {
-		setShowModal(false);
-	};
+	// Ссылка на данные для IntersectionObserver
+	const dataRef = useRef('');
+
+	// Расширяем лимит на загрузку данных если при пересечении с текущим элементом
+	// lastIndex меньше чем кол-во данных
+	const handleIntersection = useCallback(
+		(entries) => {
+			if (entries[0].isIntersecting && lastIndex < value.length) {
+				setLastIndex((prevLastIndex) => prevLastIndex + 10);
+			}
+		},
+		[value.length, lastIndex]
+	);
+
+	// Создаём IntersectionObserver и подписываемся на пересечение
+	useEffect(() => {
+		const observer = new IntersectionObserver(handleIntersection, {
+			rootMargin: '0px',
+			threshold: 1.0,
+		});
+		// При пересечении вызывается функция handleIntersection
+		if (dataRef.current) {
+			observer.observe(dataRef.current);
+		}
+
+		// Отписываемя от observer при размонтировании элемента
+		return () => {
+			observer.disconnect();
+		};
+	}, [handleIntersection, dataRef]);
 
 	return (
-		<>
+		<li>
 			<button
 				onClick={() => {
 					return setShowNode((prevState) => !prevState);
@@ -25,33 +49,25 @@ function TreeNode({ node }) {
 			>
 				{showNode ? '-' : '+'}
 			</button>
-			<span className="node-name">{node.name}: </span>
-			<li className={showNode ? 'tree-node' : 'tree-node-hidden'}>
-				<div>
-					<div className="tree-node-img-section">
-						<span>Image:</span>
-						<div
-							className="tree-node-img-section-container"
-							onClick={handleImageClick}
-						>
-							<img
-								src={API_ENDPOINTS.GET_IMAGE + node.image}
-								loading="lazy"
-								alt={node.image}
-							/>
-						</div>
-					</div>
-					<span>Filesize: {node.filesize}</span>
-					<span>Date: {getDateFromTimestamp(node.timestamp)}</span>
-					<span>Category: {node.category}</span>
-				</div>
-			</li>
-			<Modal
-				isOpen={showModal}
-				onClose={handleCloseModal}
-				image={API_ENDPOINTS.GET_IMAGE + node.image}
-			/>
-		</>
+			<span className="node-name">{name}: </span>
+			<ul
+				className={
+					showNode
+						? 'node-cards-wrapper'
+						: 'node-cards-wrapper-hidden'
+				}
+			>
+				{value.slice(0, lastIndex).map((node) => {
+					return (
+						<NodeCard
+							dataRef={dataRef}
+							key={node.image}
+							node={node}
+						/>
+					);
+				})}
+			</ul>
+		</li>
 	);
 }
 

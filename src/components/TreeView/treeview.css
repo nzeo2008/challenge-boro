@@ -10,7 +10,7 @@
 }
 
 .tree-view-list-wrapper ul {
-	margin: 0.3rem 0rem 0.3rem 8rem;
+	margin: 0.8rem 0rem 0.8rem 8rem;
 }
 
 .tree-view-list-wrapper {
@@ -86,7 +86,7 @@
 	}
 
 	.tree-view-list-wrapper ul {
-		margin: 0.2rem 0rem;
-		padding-left: 6.5rem;
+		margin: 0.8rem 0rem;
+		padding-left: 3rem;
 	}
 }

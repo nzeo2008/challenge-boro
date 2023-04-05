@@ -1,67 +1,7 @@
-.tree-node {
-	visibility: visible;
-	background-color: aliceblue;
-	padding: 2rem 2rem;
-	margin-left: 4rem;
-	margin-top: 0.5rem;
-	box-shadow: rgba(0, 0, 0, 0.15) 0.15rem 0.15rem 0.15rem;
-	font-size: 1.1rem;
-	letter-spacing: 0.1rem;
-	border-radius: 2rem;
-	opacity: 1;
-	transition: all ease-in-out 0.2s;
-	height: auto;
-	width: max-content;
+.node-cards-wrapper {
+	display: block;
 }
 
-.tree-node-hidden {
-	visibility: hidden;
-	margin: 0.5rem 0rem;
-	opacity: 0;
-	transition: all ease-in-out 0.2s;
-	overflow: hidden;
-	transform: translateX(-5rem);
-	width: 0rem;
-	height: 0rem;
-}
-
-.tree-node > div {
-	display: flex;
-	flex-direction: column;
-}
-
-.tree-node > div * {
-	margin-bottom: 0.4rem;
-}
-
-.tree-node-img-section {
-	display: flex;
-	align-items: flex-end;
-	column-gap: 1rem;
-}
-
-.tree-node-img-section-container {
-	overflow: hidden;
-	height: 5rem;
-	width: 5rem;
-	cursor: pointer;
-	border-radius: 100%;
-}
-
-.tree-node-img-section-container img {
-	height: 100%;
-	width: 100%;
-	object-fit: cover;
-	transition: 0.2s all ease-in-out;
-}
-
-.tree-node-img-section-container img:hover {
-	transform: scale(1.5);
-}
-
-@media screen and (max-width: 600px) {
-	.tree-node {
-		display: block;
-		font-size: 0.8rem;
-	}
+.node-cards-wrapper-hidden {
+	display: none;
 }
