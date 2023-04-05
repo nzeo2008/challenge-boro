@@ -1,4 +1,3 @@
-import './header.css';
 import { useContext, useEffect } from 'react';
 import { DataContext } from '../App';
 import {
@@ -6,6 +5,8 @@ import {
 	setRadioButtonCheckedProp,
 } from '../services/common.service';
 import RadioButton from '../components/RadioButton/RadioButton';
+import './header.css';
+import Button from '../components/Button/Button';
 
 function Header() {
 	const {
@@ -13,26 +14,24 @@ function Header() {
 		setIndex,
 		limitOfPages,
 		setChangeToTreeView,
-		setShowMenu,
+		changeToTreeView,
+		setCurrentPage,
 	} = useContext(DataContext);
 
 	// Функция для сброса данных
 	const onReset = () => {
 		// Возвращение на страницу с карточками
-		setIndex((prevState) => ({
+		setIndex({
 			start: 0,
 			end: limitOfPages,
-		}));
+		});
 		resetData();
 		moveToUp();
 		// Установка radiobutton в нужные положения
 		setRadioButtonCheckedProp('name', 'radio', false, true);
 		setRadioButtonCheckedProp('id', 'tree-view', false, true);
 		setRadioButtonCheckedProp('id', 'card-view', true, false);
-
-		// Закрытие бокового меню и смена вида на карточки
-		setShowMenu(false);
-		setChangeToTreeView(false);
+		setCurrentPage(1);
 	};
 
 	// Установка первоначального значения у radiobutton на карточки
@@ -42,7 +41,7 @@ function Header() {
 
 	return (
 		<header className="header-wrapper">
-			<span>Boro Challenge</span>
+			<h1>Boro Challenge</h1>
 			<div>
 				<RadioButton
 					innerText="Вид карточек"
@@ -64,9 +63,18 @@ function Header() {
 					}}
 				/>
 			</div>
-			<button className="header-wrapper-reset-button" onClick={onReset}>
+
+			<Button
+				className={
+					changeToTreeView
+						? 'header-wrapper-reset-button-hidden'
+						: 'header-wrapper-reset-button'
+				}
+				onClick={onReset}
+				disabled={changeToTreeView}
+			>
 				Сбросить
-			</button>
+			</Button>
 		</header>
 	);
 }

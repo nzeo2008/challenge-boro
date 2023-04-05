@@ -16,7 +16,3 @@ input {
 .form-radio:hover {
 	color: var(--primary-color);
 }
-
-.form-radio:hover .form-radio > input {
-	transform: scale(1.5);
-}

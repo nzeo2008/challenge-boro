@@ -2,23 +2,28 @@ import Layout from './layout/Layout';
 import useDataFetching from './customHooks/useDataFetching';
 import { API_ENDPOINTS } from './constants/urlConstants';
 import { TOKEN_STORAGE } from './constants/tokenConstants';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import usePagination from './customHooks/usePagination';
 
 export const DataContext = React.createContext();
 
 function App() {
-	const { data, isDataLoading, error, setData, resetData } = useDataFetching(
-		API_ENDPOINTS.GET_DATA,
-		TOKEN_STORAGE.USER_DATA
-	);
-	const [showMenu, setShowMenu] = useState(false);
+	const { data, isDataLoading, error, treeViewDataRef, setData, resetData } =
+		useDataFetching(API_ENDPOINTS.GET_DATA, TOKEN_STORAGE.USER_DATA);
 	const [changeToTreeView, setChangeToTreeView] = useState(false);
+	const [sorting, setSorting] = useState('DESC');
+	const [currentPage, setCurrentPage] = useState(1);
 
-	const limitOfPages = 9;
+	const limitOfPages = 15;
 
-	const { splitData, splitDataRef, index, setIndex, nextPage, prevPage } =
-		usePagination(data, limitOfPages);
+	const { splitData, index, numberOfPages, setIndex } = usePagination(
+		data,
+		limitOfPages
+	);
+
+	useEffect(() => {
+		setCurrentPage(1);
+	}, []);
 
 	return (
 		<DataContext.Provider
@@ -28,17 +33,18 @@ function App() {
 				isDataLoading,
 				error,
 				splitData,
-				splitDataRef,
 				index,
 				changeToTreeView,
-				showMenu,
-				setShowMenu,
+				numberOfPages,
+				treeViewDataRef,
+				currentPage,
+				sorting,
+				setSorting,
 				setIndex,
-				nextPage,
-				prevPage,
 				setData,
 				resetData,
 				setChangeToTreeView,
+				setCurrentPage,
 			}}
 		>
 			<Layout />

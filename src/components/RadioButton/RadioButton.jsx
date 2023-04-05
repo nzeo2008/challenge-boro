@@ -7,29 +7,27 @@ function RadioButton({
 	id,
 	htmlFor,
 	onChoice,
-	sortingOrdrerRef,
+	sorting,
 	showIcon = false,
 }) {
 	return (
-		<>
-			<li className="form-radio">
-				<input
-					id={id}
-					type="radio"
-					name={name}
-					onClick={() => {
-						onChoice();
-					}}
-				/>
-				<label htmlFor={htmlFor}>{innerText}</label>
-			</li>
+		<li className="form-radio">
+			<input
+				id={id}
+				type="radio"
+				name={name}
+				onClick={() => {
+					onChoice();
+				}}
+			/>
+			<label htmlFor={htmlFor}>{innerText}</label>
 			{showIcon && (
 				<TriangleIcon
 					checked={!!document.getElementById(id)?.checked}
-					rotate={sortingOrdrerRef.current === 'DESC' ? true : false}
+					rotate={sorting === 'DESC' ? true : false}
 				/>
 			)}
-		</>
+		</li>
 	);
 }
 

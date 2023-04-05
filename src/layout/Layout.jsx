@@ -1,7 +1,6 @@
 import React from 'react';
 import Footer from './Footer';
 import Header from './Header';
-import AsideMenu from './AsideMenu';
 import CardView from '../components/CardView/CardView';
 import TreeView from '../components/TreeView/TreeView';
 import { DataContext } from '../App';
@@ -12,7 +11,6 @@ function Layout() {
 	return (
 		<>
 			<Header />
-			<AsideMenu />
 			{changeToTreeView ? <TreeView /> : <CardView />}
 			<Footer />
 		</>

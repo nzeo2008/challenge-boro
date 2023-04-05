@@ -67,3 +67,29 @@ export function extractImageName(data) {
 	}
 	return data;
 }
+
+export function range(start, end) {
+	return Array(end - start + 1)
+		.fill()
+		.map((_, idx) => start + idx);
+}
+
+export function getSize(filesize) {
+	return (parseInt(filesize) / 1000).toFixed(2) + ' kB';
+}
+
+export function separateDataByCategory(data) {
+	const updatedData = [];
+	let categoryObject = {};
+
+	data.forEach((obj) => {
+		const objectCategory = obj.category;
+		const { category, ...modifiedObject } = obj;
+		if (!categoryObject[objectCategory]) {
+			categoryObject[objectCategory] = [];
+		}
+		categoryObject[objectCategory].push(modifiedObject);
+	});
+	updatedData.push(categoryObject);
+	return updatedData;
+}
