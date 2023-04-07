@@ -6,7 +6,7 @@ import { sortData } from '../services/common.service';
 import './sortingmenu.css';
 
 function SortingMenu() {
-	const { setData, data, sorting, setSorting, setIndex } =
+	const { setData, data, sorting, setSorting, setIndex, changeToTreeView } =
 		useContext(DataContext);
 
 	// Функция сортировки при нажатии
@@ -18,14 +18,20 @@ function SortingMenu() {
 	};
 
 	return (
-		<section className="sorting-menu-wrapper">
-			<List label="Сортировать по:">
-				<div className="button-flex-container">
+		<section
+			className={
+				!changeToTreeView
+					? 'sorting-menu-wrapper'
+					: 'sorting-menu-wrapper-hidden'
+			}
+		>
+			<List label='Сортировать по:'>
+				<div className='button-flex-container'>
 					<RadioButton
-						id="radio-1"
-						htmlFor="radio-1"
-						innerText="Категории"
-						name="radio"
+						id='radio-1'
+						htmlFor='radio-1'
+						innerText='Категории'
+						name='radio'
 						showIcon={true}
 						onChoice={() => {
 							handleSort('category');
@@ -33,12 +39,12 @@ function SortingMenu() {
 						sorting={sorting}
 					/>
 				</div>
-				<div className="button-flex-container">
+				<div className='button-flex-container'>
 					<RadioButton
-						id="radio-2"
-						htmlFor="radio-2"
-						innerText="Дате"
-						name="radio"
+						id='radio-2'
+						htmlFor='radio-2'
+						innerText='Дате'
+						name='radio'
 						showIcon={true}
 						onChoice={() => {
 							handleSort('timestamp');
@@ -46,12 +52,12 @@ function SortingMenu() {
 						sorting={sorting}
 					/>
 				</div>
-				<div className="button-flex-container">
+				<div className='button-flex-container'>
 					<RadioButton
-						id="radio-3"
-						htmlFor="radio-3"
-						innerText="Названию"
-						name="radio"
+						id='radio-3'
+						htmlFor='radio-3'
+						innerText='Названию'
+						name='radio'
 						showIcon={true}
 						onChoice={() => {
 							handleSort('name');
@@ -59,12 +65,12 @@ function SortingMenu() {
 						sorting={sorting}
 					/>
 				</div>
-				<div className="button-flex-container">
+				<div className='button-flex-container'>
 					<RadioButton
-						id="radio-4"
-						htmlFor="radio-4"
-						innerText="Размеру файла"
-						name="radio"
+						id='radio-4'
+						htmlFor='radio-4'
+						innerText='Размеру файла'
+						name='radio'
 						showIcon={true}
 						onChoice={() => {
 							handleSort('filesize');

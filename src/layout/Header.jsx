@@ -41,32 +41,32 @@ function Header() {
 	}, []);
 
 	return (
-		<header className="header-wrapper">
-			<div className="header-view-wrapper">
+		<header className='header-wrapper'>
+			<div className='header-view-wrapper'>
 				<RadioButton
-					innerText="Вид карточек"
-					name="header-radio"
-					id="card-view"
-					htmlFor="card-view"
+					innerText='Вид карточек'
+					name='header-radio'
+					id='card-view'
+					htmlFor='card-view'
 					onChoice={() => {
 						setChangeToTreeView(false);
 					}}
-					checked="checked"
+					checked='checked'
 				/>
 				<RadioButton
-					innerText="Bид дерева"
-					name="header-radio"
-					id="tree-view"
-					htmlFor="tree-view"
+					innerText='Bид дерева'
+					name='header-radio'
+					id='tree-view'
+					htmlFor='tree-view'
 					onChoice={() => {
 						setChangeToTreeView(true);
 					}}
 				/>
 			</div>
-			{!changeToTreeView && <SortingMenu />}
+			<SortingMenu />
 			{!changeToTreeView && (
 				<Button
-					className="header-wrapper-reset-button"
+					className='header-wrapper-reset-button'
 					onClick={onReset}
 					disabled={changeToTreeView}
 				>
