@@ -1,9 +1,9 @@
 import { useState, useMemo, useEffect } from 'react';
 import { splitByPages } from '../services/common.service';
 
-const usePagination = (data, limitOfPages) => {
+const usePagination = (data, limitOfCards) => {
 	// Инициализируем текущий индекс и диапазон значений
-	const [index, setIndex] = useState({ start: 0, end: limitOfPages });
+	const [index, setIndex] = useState({ start: 0, end: limitOfCards });
 	const [numberOfPages, setNumberOfPages] = useState(0);
 
 	// Разбиваем данные на страницы с помощью useMemo
@@ -12,8 +12,8 @@ const usePagination = (data, limitOfPages) => {
 	}, [data, index]);
 
 	useEffect(() => {
-		setNumberOfPages(Math.ceil(data.length / limitOfPages));
-	}, [data, limitOfPages]);
+		setNumberOfPages(Math.ceil(data.length / limitOfCards));
+	}, [data, limitOfCards]);
 
 	return {
 		splitData,

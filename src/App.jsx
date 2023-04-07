@@ -13,12 +13,17 @@ function App() {
 	const [changeToTreeView, setChangeToTreeView] = useState(false);
 	const [sorting, setSorting] = useState('DESC');
 	const [currentPage, setCurrentPage] = useState(1);
+	const pagesLimit = 10;
+	const [pagesIndex, setPagesIndex] = useState({
+		start: 0,
+		end: pagesLimit,
+	});
 
-	const limitOfPages = 15;
+	const limitOfCards = 15;
 
 	const { splitData, index, numberOfPages, setIndex } = usePagination(
 		data,
-		limitOfPages
+		limitOfCards
 	);
 
 	useEffect(() => {
@@ -28,7 +33,7 @@ function App() {
 	return (
 		<DataContext.Provider
 			value={{
-				limitOfPages,
+				limitOfCards,
 				data,
 				isDataLoading,
 				error,
@@ -37,8 +42,11 @@ function App() {
 				changeToTreeView,
 				numberOfPages,
 				treeViewDataRef,
+				pagesLimit,
+				pagesIndex,
 				currentPage,
 				sorting,
+				setPagesIndex,
 				setSorting,
 				setIndex,
 				setData,

@@ -26,20 +26,16 @@ const useDataFetching = (url, storageKey) => {
 			// Добавление поля с именем файла к каждому объекту в массиве данных
 			const fetchedDataWithNames = extractImageName(fetchedData);
 			// Создание копии данных для TreeView
-			treeViewDataRef.current =
-				separateDataByCategory(fetchedDataWithNames);
+			treeViewDataRef.current = separateDataByCategory(fetchedDataWithNames);
 
 			// Фильтрация удалённых карточек из массива входных данных
 			const savedLocalData = getDataFromLocalStorage(storageKey);
 
 			if (!savedLocalData) {
-				setData(fetchedDataWithNames);
+				return setData(fetchedDataWithNames);
 			}
 
-			const filteredData = filterData(
-				fetchedDataWithNames,
-				savedLocalData
-			);
+			const filteredData = filterData(fetchedDataWithNames, savedLocalData);
 			setData(filteredData);
 			setIsDataLoading(false);
 		} catch (error) {
