@@ -1,0 +1,110 @@
+.page-view-wrapper {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 1rem;
+	row-gap: 1rem;
+	column-gap: 4rem;
+}
+
+.page-view-wrapper-pages {
+	text-align: center;
+	background-color: var(--pure-white-color);
+	padding: 0.5rem;
+	font-size: 1.2rem;
+	margin: 0.2rem;
+	min-width: 3rem;
+	cursor: pointer;
+	transition: 0.2s all ease-in-out;
+	box-shadow: rgba(0, 0, 0, 0.15) 0.15rem 0.15rem 0.15rem;
+}
+
+.page-view-wrapper-pages-active {
+	pointer-events: none;
+	text-align: center;
+	padding: 0.5rem;
+	font-size: 1.2rem;
+	margin: 0.2rem;
+	min-width: 3rem;
+	cursor: pointer;
+	box-shadow: rgba(0, 0, 0, 0.15) 0.15rem 0.15rem 0.15rem;
+	background-color: var(--accent-color);
+	color: var(--pure-white-color);
+}
+
+.page-view-wrapper button {
+	border: none;
+	color: var(--pure-white-color);
+	background-color: var(--accent-color);
+	padding: 0.5rem;
+	margin: 0.5rem 0.5rem;
+	cursor: pointer;
+	box-shadow: rgba(0, 0, 0, 0.15) 0.15rem 0.15rem 0.15rem;
+	transition: 0.2s all ease-in-out;
+	border-radius: 0.8rem;
+	min-width: 8rem;
+	font-size: 1.2rem;
+}
+
+.pages-view-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0rem 1rem;
+	min-width: 10rem;
+	flex-wrap: wrap;
+}
+
+.page-view-wrapper button:hover {
+	background-color: var(--hover-accent-color);
+}
+
+.page-view-wrapper button:disabled {
+	pointer-events: none;
+	background-color: var(--disabled-button-color);
+}
+
+.page-view-wrapper-pages:hover {
+	background-color: var(--accent-color);
+	color: var(--pure-white-color);
+}
+
+@media screen and (max-width: 700px) {
+	.page-view-wrapper {
+		flex-direction: column;
+		row-gap: 0.2rem;
+		padding: 0.1rem 0.2rem;
+	}
+
+	.pages-view-container {
+		flex-wrap: wrap;
+		min-width: 20rem;
+	}
+
+	.page-view-wrapper button {
+		margin: 1rem 1rem;
+		font-size: 1rem;
+	}
+
+	.pages-view-container {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		margin: 0rem 1rem;
+		min-width: 10rem;
+		flex-wrap: wrap;
+	}
+
+	.page-view-wrapper-pages-active {
+		font-size: 1rem;
+	}
+
+	.page-view-wrapper-pages {
+		font-size: 1rem;
+	}
+
+	.buttons-next-container {
+		display: flex;
+		flex-direction: row-reverse;
+	}
+}
