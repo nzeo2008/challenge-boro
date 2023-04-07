@@ -61,7 +61,7 @@ function PaginationList() {
 				end: pagesLimit,
 			});
 		}
-	}, [isDataLoading, data, currentPage, numberOfPages]);
+	}, [isDataLoading, currentPage, numberOfPages]);
 
 	function handleNextPageClick() {
 		setIndex((prevState) => ({
@@ -113,8 +113,8 @@ function PaginationList() {
 	}
 
 	return (
-		<div className='page-view-wrapper'>
-			<div className='buttons-previous-container'>
+		<div className="page-view-wrapper">
+			<div className="buttons-previous-container">
 				<button
 					disabled={currentPage === 1 || data.length === 0}
 					onClick={handleFirstPageClick}
@@ -128,34 +128,40 @@ function PaginationList() {
 					Предыдущая
 				</button>
 			</div>
-			<div className='pages-view-container'>
-				{pagesArray.slice(pagesIndex.start, pagesIndex.end).map((number) => {
-					return (
-						<div
-							key={number}
-							onClick={() => {
-								handlePageClick(number);
-							}}
-							className={
-								currentPage === number
-									? 'page-view-wrapper-pages-active'
-									: 'page-view-wrapper-pages'
-							}
-						>
-							{number}
-						</div>
-					);
-				})}
+			<div className="pages-view-container">
+				{pagesArray
+					.slice(pagesIndex.start, pagesIndex.end)
+					.map((number) => {
+						return (
+							<div
+								key={number}
+								onClick={() => {
+									handlePageClick(number);
+								}}
+								className={
+									currentPage === number
+										? 'page-view-wrapper-pages-active'
+										: 'page-view-wrapper-pages'
+								}
+							>
+								{number}
+							</div>
+						);
+					})}
 			</div>
-			<div className='buttons-next-container'>
+			<div className="buttons-next-container">
 				<button
-					disabled={currentPage === numberOfPages || data.length === 0}
+					disabled={
+						currentPage === numberOfPages || data.length === 0
+					}
 					onClick={handleNextPageClick}
 				>
 					Следующая
 				</button>
 				<button
-					disabled={currentPage === numberOfPages || data.length === 0}
+					disabled={
+						currentPage === numberOfPages || data.length === 0
+					}
 					onClick={handleLastPageClick}
 				>
 					Последняя
