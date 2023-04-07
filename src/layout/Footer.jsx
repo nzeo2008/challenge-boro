@@ -1,13 +1,13 @@
-import SortingMenu from './SortingMenu';
 import { useContext } from 'react';
-import { DataContext } from '../App';
+import PaginationList from './../components/PaginationList/PaginationList';
+import { DataContext } from './../App';
 import './footer.css';
 
 function Footer() {
-	const { changeToTreeView } = useContext(DataContext);
+	const { changeToTreeView, data } = useContext(DataContext);
 	return (
-		<footer className="footer-wrapper">
-			{!changeToTreeView && <SortingMenu />}
+		<footer className='footer-wrapper'>
+			{!changeToTreeView && data.length !== 0 && <PaginationList />}
 		</footer>
 	);
 }

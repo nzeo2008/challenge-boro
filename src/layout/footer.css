@@ -6,23 +6,9 @@
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	color: var(--pure-white-color);
 	font-family: var(--fonts-primary);
 }
 
 .footer-wrapper span {
 	font-weight: 500;
-}
-
-.footer-wrapper .form-radio label {
-	font-size: 1.3rem;
-	font-weight: 500;
-}
-
-.footer-wrapper .form-radio:hover {
-	color: var(--accent-color);
-}
-
-.footer-wrapper .form-radio input[type='radio'] {
-	transform: scale(1.3);
 }

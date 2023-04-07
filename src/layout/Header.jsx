@@ -5,14 +5,15 @@ import {
 	setRadioButtonCheckedProp,
 } from '../services/common.service';
 import RadioButton from '../components/RadioButton/RadioButton';
-import './header.css';
 import Button from '../components/Button/Button';
+import './header.css';
+import SortingMenu from './SortingMenu';
 
 function Header() {
 	const {
 		resetData,
 		setIndex,
-		limitOfPages,
+		limitOfCards,
 		setChangeToTreeView,
 		changeToTreeView,
 		setCurrentPage,
@@ -23,7 +24,7 @@ function Header() {
 		// Возвращение на страницу с карточками
 		setIndex({
 			start: 0,
-			end: limitOfPages,
+			end: limitOfCards,
 		});
 		resetData();
 		moveToUp();
@@ -40,30 +41,29 @@ function Header() {
 	}, []);
 
 	return (
-		<header className="header-wrapper">
-			<h1>Boro Challenge</h1>
-			<div>
+		<header className='header-wrapper'>
+			<div className='header-view-wrapper'>
 				<RadioButton
-					innerText="Вид карточек"
-					name="header-radio"
-					id="card-view"
-					htmlFor="card-view"
+					innerText='Вид карточек'
+					name='header-radio'
+					id='card-view'
+					htmlFor='card-view'
 					onChoice={() => {
 						setChangeToTreeView(false);
 					}}
-					checked="checked"
+					checked='checked'
 				/>
 				<RadioButton
-					innerText="Bид дерева"
-					name="header-radio"
-					id="tree-view"
-					htmlFor="tree-view"
+					innerText='Bид дерева'
+					name='header-radio'
+					id='tree-view'
+					htmlFor='tree-view'
 					onChoice={() => {
 						setChangeToTreeView(true);
 					}}
 				/>
 			</div>
-
+			{!changeToTreeView && <SortingMenu />}
 			<Button
 				className={
 					changeToTreeView
