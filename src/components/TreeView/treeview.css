@@ -79,7 +79,7 @@
 	opacity: 1;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 700px) {
 	.tree-view-wrapper {
 		padding: 2rem 0.5rem;
 		font-size: 0.8rem;
