@@ -52,24 +52,32 @@ function CardView() {
 
 		const savedData = getDataFromLocalStorage(TOKEN_STORAGE.USER_DATA);
 		if (!savedData) {
-			return saveDataToLocalStorage(TOKEN_STORAGE.USER_DATA, [currentObj]);
+			return saveDataToLocalStorage(TOKEN_STORAGE.USER_DATA, [
+				currentObj,
+			]);
 		}
-		saveDataToLocalStorage(TOKEN_STORAGE.USER_DATA, [...savedData, currentObj]);
+		saveDataToLocalStorage(TOKEN_STORAGE.USER_DATA, [
+			...savedData,
+			currentObj,
+		]);
 	};
 
 	return isDataLoading ? (
 		<Spinner />
 	) : (
 		<main>
-			<div className='main-page-cards-wrapper'>
+			<div className="main-page-cards-wrapper">
 				{splitData.map((obj, i) => {
 					return (
 						<Card
 							key={obj.image}
 							data={obj}
 							onDelete={() => {
-								const card = document.querySelectorAll('.card-wrapper');
-								card[i].classList.add('card-wrapper-delete-animation');
+								const card =
+									document.querySelectorAll('.card-wrapper');
+								card[i].classList.add(
+									'card-wrapper-delete-animation'
+								);
 								setTimeout(() => {
 									handleDelete(obj);
 								}, 250);
